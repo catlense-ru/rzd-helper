@@ -1,0 +1,65 @@
+.regContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 50px;
+  }
+  .formData {
+    display: flex;
+    flex-direction: column;
+    min-width: 320px;
+    max-width: 420px;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-left: 15px;
+    margin-right: 15px;
+    input, select {
+      width: calc(100% - 30px);
+      height: 48px;
+      padding: 0;
+      padding-bottom: 3px;
+      border-radius: 10px;
+      border: 1px solid #eee;
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    select {
+      width: 100%;
+    }
+    button {
+      width: calc(100% + 2px);
+      padding: 0;
+      height: 52px;
+      border-radius: 10px;
+      border: none;
+      color: white;
+      font-size: 16px;
+      background: #36a4ff;
+      padding-bottom: 3px;
+    }
+    a {
+      text-align: center;
+      display: block;
+      margin-top: 25px;
+      text-decoration: none;
+      color: #36a4ff;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .result {
+      text-align: center;
+      &.error {
+        color: rgb(255, 47, 47);
+      }
+      &.success {
+        color: rgb(43, 196, 81);
+      }
+    }
+  }
+}
