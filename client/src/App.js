@@ -8,6 +8,7 @@ import Main from "./pages/Main/Main";
 import axios from 'axios'
 import config from './config'
 import { useDispatch, useSelector } from "react-redux";
+import Join from "./pages/Join/Join";
 
 function App() {
 
@@ -18,11 +19,12 @@ function App() {
       dispatch({type: "JOIN_USER", payload: data})
     })
   }
-  
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" index element={<Main title="Главная страница" />} />
+        <Route path="/join" element={<Join title="Авторизация" />} />
       </Routes>
     </BrowserRouter>
   );

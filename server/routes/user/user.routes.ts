@@ -12,7 +12,7 @@ router.get('/get', async(req: Request, res: Response) => {
   const user = await User.findOne({token})
 
   if(!user) {
-    res.status(500).json({status: 500, message: 'Пользователь не найден'})
+    return res.status(500).json({status: 500, message: 'Пользователь не найден'})
   }
 
   res.status(200).json(user)

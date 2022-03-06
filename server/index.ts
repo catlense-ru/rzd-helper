@@ -13,8 +13,6 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use((_, __, next) => {
-  const time = `${new Date(Date.now()).toLocaleDateString()} ${new Date(Date.now()).toLocaleTimeString()}`
-  console.log(`[${time}] user joined`)
   next()
 })
 
