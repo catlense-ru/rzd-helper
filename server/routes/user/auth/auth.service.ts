@@ -1,4 +1,5 @@
 import User from "../../../models/User";
+import {v4} from 'uuid'
 
 export default class Auth {
 
@@ -19,6 +20,7 @@ export default class Auth {
       password,
       permissions: 0,
       contact,
+      token: v4(),
       stat: [
         {joined: 1},
         {comments: 0, decisions: 0}

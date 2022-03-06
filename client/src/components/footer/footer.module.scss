@@ -1,0 +1,29 @@
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: calc(100% - 30px);
+  border-top: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  a {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    line-height: 40px;
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(255, 78, 78);
+    img {
+      max-height: 40px;
+    }
+  }
+  @media(max-width: 480px) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    flex-direction: column;
+  }
+}

@@ -7,5 +7,6 @@ export default interface IUser {
   password?: string,
   stat?: [string],
   permissions: string,
-  contact: string
+  contact: string,
+  token?: string
 }

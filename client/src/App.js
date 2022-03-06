@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import './index.css'
+import Main from "./pages/Main/Main";
+import axios from 'axios'
+import config from './config'
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
+
+  const dispatch = useDispatch()
+
+  if(localStorage.token) {
+    axios.get(`${config.api}/user/get?token=${localStorage.token}`).then(({data}) => {
+      dispatch({type: "JOIN_USER", payload: data})
+    })
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" index element={<Main title="Главная страница" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

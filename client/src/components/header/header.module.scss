@@ -1,0 +1,18 @@
+header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-left: 15px;
+  padding-right: 15px;
+  a {
+    font-weight: bold;
+    color: rgb(72, 157, 255);
+    text-decoration: none;
+    display: block;
+  }
+  .buttons {
+    margin-left: auto;
+    display: inline-block
+  }
+}
