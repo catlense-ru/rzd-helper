@@ -7,7 +7,7 @@ import './index.css'
 import Main from "./pages/Main/Main";
 import axios from 'axios'
 import config from './config'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Join from "./pages/Join/Join";
 import Register from "./pages/Register/Register";
 

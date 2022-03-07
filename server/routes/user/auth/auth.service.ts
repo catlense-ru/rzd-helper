@@ -3,7 +3,7 @@ import {v4} from 'uuid'
 
 export default class Auth {
 
-  async registration(name: string, surname: string, login: string, work: string, password: string, contact: string) : Promise<Object> {
+  async registration(name: string, surname: string, login: string, work: string, password: string, contact: string, road: string) : Promise<Object> {
     
     const userExist = await User.findOne({login, password})
     
@@ -17,8 +17,9 @@ export default class Auth {
       surname,
       login,
       work,
+      road,
       password,
-      permissions: 0,
+      permissions: 1,
       contact,
       token: v4(),
       stat: [

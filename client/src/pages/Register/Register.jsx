@@ -2,9 +2,19 @@ import Header from "../../components/header/Header";
 import {useState} from 'react'
 import s from './register.module.scss'
 import Footer from "../../components/footer/Footer"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import config from "../../config";
 
 export default function Register(props) {
+
+  const navigate = useNavigate()
+  const user = useSelector(state => state.user)
+
+  if(user.login) {
+    navigate('/')
+  }
 
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
@@ -17,7 +27,24 @@ export default function Register(props) {
   const [result, setResult] = useState({status: '', message: ''})
 
   const sendData = () => {
-
+    if(name.trim() === '') return setResult({status: 'error', message: 'Укажите имя'})
+    if(surname.trim() === '') return setResult({status: 'error', message: 'Укажите фамилию'})
+    if(phone.trim() === '') return setResult({status: 'error', message: 'Укажите телефон'})
+    if(login.trim() === '') return setResult({status: 'error', message: 'Укажите логин'})
+    if(road.trim() === '0') return setResult({status: 'error', message: 'Укажите дорогу'})
+    if(work.trim() === '') return setResult({status: 'error', message: 'Укажите предприятие'})
+    if(password.trim() === '') return setResult({status: 'error', message: 'Укажите пароль'})
+    if(passwordRepeat.trim() === '') return setResult({status: 'error', message: 'Укажите повтор пароля'})
+    if(password !== passwordRepeat) return setResult({status: 'error', message: 'Пароли не совпадают'})
+    axios.post(`${config.api}/user/auth/registration`, {
+      name, surname, login, work, phone, road, password
+    }).then(({data}) => {
+      if(data.status === "500") {
+        return setResult({status: 'error', message: data.message})
+      }
+      localStorage.token = data.user.token
+      window.location.reload()
+    })
   }
 
   return(
@@ -32,7 +59,7 @@ export default function Register(props) {
           <input type="text" placeholder="Фамилия" onChange={({target}) => setSurname(target.value)} value={surname} />
           <input type="text" placeholder="Телефон" onChange={({target}) => setPhone(target.value)} value={phone} />
           <input type="text" placeholder="Логин" onChange={({target}) => setLogin(target.value)} value={login} />
-          <select onChange={({target}) => setRoad(target.value)} defaultValue="0">
+          <select onChange={({target}) => setRoad(target.value)} defaultValue="0" value={road}>
             <option value="0">Выберите дорогу</option>
             <option value="Восточно-Сибирская железная дорога">Восточно-Сибирская железная дорога</option>
             <option value="Горьковская железная дорога">Горьковская железная дорога</option>

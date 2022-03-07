@@ -5,8 +5,8 @@ const router = express.Router()
 const auth = new Auth()
 
 router.post('/registration', async(req: Request, res: Response) => {
-  const {name, surname, login, work, password, contact} = req.body
-  const user = await auth.registration(name, surname, login, work, password, contact)
+  const {name, surname, login, work, password, contact, road} = req.body
+  const user = await auth.registration(name, surname, login, work, password, contact, road)
   res.status(201).json(user)
 })
 

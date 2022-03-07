@@ -6,6 +6,7 @@ const schema = new Schema({
   surname: String,
   login: String,
   work: String,
+  road: String,
   password: String,
   permissions: Number,
   contact: String,
