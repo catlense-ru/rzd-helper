@@ -43,6 +43,7 @@ export default function Register(props) {
         return setResult({status: 'error', message: data.message})
       }
       localStorage.token = data.user.token
+      navigate('/')
       window.location.reload()
     })
   }

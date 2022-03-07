@@ -20,6 +20,8 @@ export default function Join(props) {
   }
 
   const sendData = () => {
+    if(login.trim() === '') return setResult({status: 'error', message: 'Укажите логин'})
+    if(password.trim() === '') return setResult({status: 'error', message: 'Укажите пароль'})
     axios.post(
       `${config.api}/user/auth/login`, {
         login, password
@@ -31,7 +33,7 @@ export default function Join(props) {
         localStorage.token = data.token
         setResult({status: 'success', message: 'Вы успешно вошли!'})
         window.location.reload()
-        // console.log(data)
+        navigate('/')
       }
     })
   }
