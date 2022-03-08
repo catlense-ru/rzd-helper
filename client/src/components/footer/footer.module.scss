@@ -1,6 +1,9 @@
 footer {
-  position: absolute;
-  bottom: 0;
+  position: sticky;
+  background: white;
+  z-index: 999;
+  bottom: 0px;
+  // margin-top: 60px;
   height: 60px;
   padding-left: 15px;
   padding-right: 15px;
@@ -9,6 +12,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  display: none;
   a {
     height: 40px;
     display: flex;

@@ -21,7 +21,7 @@ export default class Decisions {
   }
 
   async isExistsByName(decision: string): Promise<boolean> {
-    return await Decision.findOne({decision}) !== null ? true : false
+    return await Decision.findOne({decision}) !== null
   }
 
   async create(comment_id: string, decision: string, by: string, by_name: string) {    

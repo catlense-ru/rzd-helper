@@ -19,7 +19,7 @@ router.get('/getByComment', async(req: Request, res: Response) => {
 router.post('/create', async(req: Request, res: Response) => {
   const {comment_id, decision, by, by_name} = req.body
   if(await decisions.isExistsByName(decision)) {
-    return res.status(500).json({status: 'error', message: 'Решение уже существует'})
+    return res.status(200).json({status: 'error', message: 'Решение уже существует'})
   } else {
     await decisions.create(comment_id, decision, by, by_name)
     res.status(201).json({status: 'success', message: 'Решение добавлено'})
