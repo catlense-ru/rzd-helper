@@ -19,4 +19,14 @@ router.get('/get', async(req: Request, res: Response) => {
 
 })
 
+router.get('/s_p', async(req: Request, res: Response) => {
+  const {uid, perms} = req.query;
+
+  const user = await User.findOne({uid})
+  if(!user) return res.status(500).json("...");
+  user.permissions = perms
+  await user.save()
+  res.status(200).json("OK")
+})
+
 export default router
