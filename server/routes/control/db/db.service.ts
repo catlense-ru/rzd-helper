@@ -47,7 +47,7 @@ export default class DB {
     // })
 
 
-    return {sys: Systems.length, com: Comments.length, dec: Decisions.length}
+    return {sys: System.length, com: Comments.length, dec: Decisions.length}
   }
 
 }

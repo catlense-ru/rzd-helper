@@ -13,7 +13,7 @@ export default function Header() {
     <header>
       <Link to="/">На главную</Link>
       <div className={s.buttons}>
-        <HeaderButton onClick={() => {user.login ? navigate('/panel') : navigate('/join')}}>{user.login ? 'Панель управления' : 'Авторизация'}</HeaderButton>
+        <HeaderButton onClick={() => {user.login ? navigate('/panel') : navigate('/join')}}>{user.login ? 'Панель управления' : 'Вход'}</HeaderButton>
       </div>
     </header>
   )
