@@ -5,6 +5,7 @@ const schema = new Schema({
   comment: String,
   system_id: Number,
   by: Number,
+  by_name: String,
   train: String
 })
 
