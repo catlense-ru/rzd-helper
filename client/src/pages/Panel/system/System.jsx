@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 export default function System(props) {
 
   const [systems, setSystems] = useState()
-  const [system, setSystem] = useState()
+  const [system, setSystem] = useState('')
   const [result, setResult] = useState()
 
   const navigate = useNavigate()
