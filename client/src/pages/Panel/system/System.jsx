@@ -18,12 +18,15 @@ export default function System(props) {
   if(!user.login || user.permissions < 2) { navigate('/') }
 
   const sendData = () => {
-    if(!system) return setResult('Укажите систему')
+    if(!system || system.trim() === '') return setResult('Укажите систему')
     axios.post(`${config.api}/control/systems/create`, {
       name: system,
       by: user.uid,
       by_name: `${user.name} ${user.surname}`
-    }).then(({data}) => setResult(data.message))
+    }).then(({data}) => {
+      setResult(data.message)
+      setSystem('')
+    })
   }
 
   useEffect(() => {

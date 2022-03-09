@@ -11,7 +11,7 @@ export default function Decision(props) {
 
   const navigate = useNavigate()
   const user = useSelector(state => state.user)
-  if(!user.login || user.permissions < 2) { navigate('/') }
+  if(!user.login || user.permissions < 1) { navigate('/') }
 
   const [systems, setSystems] = useState();
   const [system, setSystem] = useState(0);
@@ -38,6 +38,7 @@ export default function Decision(props) {
   }, [system])
 
   const sendData = () => {
+    if(!decision || decision.trim() === '') return setResult('Укажите решение')
     axios.post(`${config.api}/control/decisions/create`, {
       comment_id: comment,
       decision: decision,
@@ -45,6 +46,7 @@ export default function Decision(props) {
       by_name: `${user.name} ${user.surname}`,
     }).then(({ data }) => {
       setResult(data.message)
+      setDecision('')
     })
   }
 

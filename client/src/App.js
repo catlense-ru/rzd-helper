@@ -17,6 +17,7 @@ import System from "./pages/Panel/system/System";
 import Locomotive from "./pages/Panel/locomotive/Locomotive";
 import Comment from "./pages/Panel/comment/Comment";
 import Decision from "./pages/Panel/decision/Decision";
+import Decisions from "./pages/Panel/decision/Decisions";
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
         <Route path="/panel/locomotive" element={<Locomotive title="Добавление серии локомотива" />} />
         <Route path="/panel/comment" element={<Comment title="Создание замечания"/>} />
         <Route path="/panel/decision" element={<Decision title="Создание решения" />} />
+        <Route path="/panel/decisions/:id" element={<Decisions title="Добавление решения" />} />
       </Routes>
     </BrowserRouter>
   );

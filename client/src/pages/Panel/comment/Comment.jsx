@@ -21,7 +21,7 @@ export default function Comment(props) {
 
   const navigate = useNavigate()
   const user = useSelector(state => state.user)
-  if(!user.login || user.permissions < 2) { navigate('/') }
+  if(!user.login || user.permissions < 1) { navigate('/') }
 
   useEffect(() => {
     axios.get(`${config.api}/control/systems/getAll`).then(({data}) => {
@@ -40,6 +40,11 @@ export default function Comment(props) {
   }, [system, train])
 
   const saveMore = () => {
+    if(!system || system.trim() === '0') return setResult('Укажите систему')
+    if(!train || train.trim() === '0') return setResult('Укажите локомотив')
+    if(!comment || comment.trim() === '') return setResult('Укажите замечание')
+    if(!decision || decision.trim() === '') return setResult('Укажите решение')
+
     axios.post(`${config.api}/control/comments/create`, {
       comment: comment,
       system_id: system,
@@ -62,6 +67,10 @@ export default function Comment(props) {
   }
 
   const saveOne = () => {
+    if(!system || system.trim() === '0') return setResult('Укажите систему')
+    if(!train || train.trim() === '0') return setResult('Укажите локомотив')
+    if(!comment || comment.trim() === '') return setResult('Укажите замечание')
+    if(!decision || decision.trim() === '') return setResult('Укажите решение')
     axios.post(`${config.api}/control/comments/create`, {
       comment: comment,
       system_id: system,

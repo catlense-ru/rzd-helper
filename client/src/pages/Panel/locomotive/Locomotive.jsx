@@ -18,9 +18,13 @@ export default function Locomotive(props) {
   const [result, setResult] = useState()
 
   const sendData = () => {
+    if(!loco || loco.trim() === '') return setResult('Укажите локомотив')
     axios.post(`${config.api}/control/trains/create`, {
       name: loco
-    }).then(({data}) => setResult(data.message))
+    }).then(({data}) => {
+      setResult(data.message)
+      setLoco('')
+    })
   }
 
   useEffect(() => {
