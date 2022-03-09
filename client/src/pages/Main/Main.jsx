@@ -74,7 +74,7 @@ export default function Main(props) {
         </div>  
       </div>
       <div className="decisions" style={{marginTop: 100}}>
-        <h3 style={{paddingLeft: 15}}>{comment_text}</h3>
+        <h3 style={{paddingLeft: 15, paddingRight: 15, maxWidth: 'calc(100% - 30px)'}}>{comment_text}</h3>
         {
           decisions ? decisions.map(e => <Decision author={e.by_name} key={e.uid}>{e.decision}</Decision>) : null
         }

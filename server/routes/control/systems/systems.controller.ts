@@ -16,7 +16,7 @@ router.get('/get', async(req: Request, res: Response) => {
 router.post('/create', async(req: Request, res: Response) => {
   const {name, by, by_name} = req.body
   if(await systems.isExistsByName(name)) {
-    return res.status(500).json({status: 'error', message: 'Такая система уже существует'})
+    return res.status(200).json({status: 'error', message: 'Такая система уже существует'})
   } else {
     await systems.create(name, by, by_name)
     return res.status(201).json({status: 'success', message: 'Успешно создано'})

@@ -13,6 +13,7 @@ import Register from "./pages/Register/Register";
 import Panel from "./pages/Panel/Panel";
 import Users from "./pages/Panel/users/Users";
 import Export from "./pages/Panel/export/Export";
+import System from "./pages/Panel/system/System";
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
 
         <Route path="/panel/users" element={<Users title="Управление пользователями" />} />
         <Route path="/panel/export" element={<Export title="Экспорт таблицы" />} />
+        <Route path="/panel/system" element={<System title="Создание системы" />} />
       </Routes>
     </BrowserRouter>
   );
