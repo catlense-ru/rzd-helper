@@ -1,3 +1,3 @@
 export default {
-  api: 'https://api.rzd.voronin.xyz'
+  api: 'http://80.78.246.215:1001/'
 }
