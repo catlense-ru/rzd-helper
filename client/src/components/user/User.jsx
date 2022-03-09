@@ -11,7 +11,7 @@ export default function User(props) {
     if(user && user.uid !== 0 && permission !== -1) {
       axios.get(`${config.api}/user/s_p?uid=${user.uid}&perms=${permission}`).then(({data}) => console.log('response', data))
     } 
-    console.log('data', user, user.uid)
+    // eslint-disable-next-line
   }, [permission])
 
   return(

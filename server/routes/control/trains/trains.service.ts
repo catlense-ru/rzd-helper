@@ -26,7 +26,7 @@ export default class Train {
 
   async create(name: string) {
     const system = new Trains({
-      uid: await Trains.count() + 99,
+      uid: await Trains.count() + 1,
       name
     })
 

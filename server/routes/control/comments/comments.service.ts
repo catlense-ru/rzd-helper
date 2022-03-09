@@ -30,8 +30,9 @@ export default class Comments {
       comment, system_id, by, by_name,
       train
     })
-
-    return await comments.save()
+    
+    await comments.save()
+    return await Comment.count() + 98
   }
 
   async edit(comment_id: string, comment: string): Promise<Object> {

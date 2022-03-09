@@ -12,7 +12,7 @@ export default function Export(props) {
 
   const exportData = () => {
     axios.get(`${config.api}/control/db/export`).then(({data}) => {
-      if(data.toString().toLowerCase() == "ok") {
+      if(data.toString().toLowerCase() === "ok") {
         setResult('Таблица скоро появится на почте e_voronin@mail.ru')
       }
     })
