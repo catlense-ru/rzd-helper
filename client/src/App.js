@@ -16,6 +16,7 @@ import Export from "./pages/Panel/export/Export";
 import System from "./pages/Panel/system/System";
 import Locomotive from "./pages/Panel/locomotive/Locomotive";
 import Comment from "./pages/Panel/comment/Comment";
+import Decision from "./pages/Panel/decision/Decision";
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
         <Route path="/panel/system" element={<System title="Создание системы" />} />
         <Route path="/panel/locomotive" element={<Locomotive title="Добавление серии локомотива" />} />
         <Route path="/panel/comment" element={<Comment title="Создание замечания"/>} />
+        <Route path="/panel/decision" element={<Decision title="Создание решения" />} />
       </Routes>
     </BrowserRouter>
   );

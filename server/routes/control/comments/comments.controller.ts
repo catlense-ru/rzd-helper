@@ -20,7 +20,7 @@ router.get('/getBySystem', async(req: Request, res: Response) => {
 router.post('/create', async(req: Request, res: Response) => {
   const {comment, system_id, by, by_name, train} = req.body
   if(await comments.isExistsByName(comment)) {
-    return res.status(500).json({status: 'error', message: 'Такое замечание уже существует'})
+    return res.status(200).json({status: 'error', message: 'Такое замечание уже существует'})
   } else {
     return res.status(201).json({status: 'success', message: 'Успешно создано', uid: await comments.create(comment, system_id, by, by_name, train)})
   }

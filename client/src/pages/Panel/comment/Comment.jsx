@@ -40,7 +40,25 @@ export default function Comment(props) {
   }, [system, train])
 
   const saveMore = () => {
-    
+    axios.post(`${config.api}/control/comments/create`, {
+      comment: comment,
+      system_id: system,
+      by: user.uid,
+      by_name: `${user.name} ${user.surname}`,
+      train: train
+    }).then(({data}) => {
+      if(data.status === 'error') return setResult(data.message)
+      let uid = data.uid
+      axios.post(`${config.api}/control/decisions/create`, {
+        comment_id: data.uid,
+        decision: decision,
+        by: user.uid,
+        by_name: `${user.name} ${user.surname}`,
+      }).then(({data}) => {
+        setResult(data.message)
+        navigate(`/panel/decisions/${uid}`)
+      })
+    })
   }
 
   const saveOne = () => {
@@ -51,7 +69,7 @@ export default function Comment(props) {
       by_name: `${user.name} ${user.surname}`,
       train: train
     }).then(({data}) => {
-      setResult(data.message)
+      if(data.status === 'error') return setResult(data.message)
       axios.post(`${config.api}/control/decisions/create`, {
         comment_id: data.uid,
         decision: decision,

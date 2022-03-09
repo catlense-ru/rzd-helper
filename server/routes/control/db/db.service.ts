@@ -111,42 +111,45 @@ export default class DB {
   }
 
   async transfer(): Promise<Object> {
+    
+    Comments.forEach(async c => {
+      if(await Comment.findOne({uid: c.uid})) return;
+      const comments = new Comment({
+        uid: c.uid,
+        comment: c.comment,
+        system_id: c.system_id,
+        by: 2,
+        by_name: c.by_name,
+        train: c.train
+      })
 
-    // Comments.forEach(async c => {
-    //   const comments = new Comment({
-    //     uid: c.uid,
-    //     comment: c.comment,
-    //     system_id: c.system_id,
-    //     by: 2,
-    //     by_name: c.by_name,
-    //     train: c.train
-    //   })
+      await comments.save()
+    })
 
-    //   await comments.save()
-    // })
+    Decisions.forEach(async c => {
+      if(await Decision.findOne({uid: c.uid})) return;
+      const comments = new Decision({
+        uid: c.uid,
+        comment_id: c.comment_id,
+        decision: c.decision,
+        by: 2,
+        by_name: c.by_name,
+      })
 
-    // Decisions.forEach(async c => {
-    //   const comments = new Decision({
-    //     uid: c.uid,
-    //     comment_id: c.comment_id,
-    //     decision: c.decision,
-    //     by: 2,
-    //     by_name: c.by_name,
-    //   })
+      await comments.save()
+    })
 
-    //   await comments.save()
-    // })
+    System.forEach(async c => {
+      if(await Systems.findOne({uid: c.uid})) return;
+      const comments = new Systems({
+        uid: c.uid,
+        name: c.name,
+        by: 2,
+        by_name: c.by_name,
+      })
 
-    // System.forEach(async c => {
-    //   const comments = new Systems({
-    //     uid: c.uid,
-    //     name: c.name,
-    //     by: 2,
-    //     by_name: c.by_name,
-    //   })
-
-    //   await comments.save()
-    // })
+      await comments.save()
+    })
 
 
     return { sys: System.length, com: Comments.length, dec: Decisions.length }
