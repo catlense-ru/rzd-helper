@@ -37,7 +37,7 @@ export default function Register(props) {
     if(passwordRepeat.trim() === '') return setResult({status: 'error', message: 'Укажите повтор пароля'})
     if(password !== passwordRepeat) return setResult({status: 'error', message: 'Пароли не совпадают'})
     axios.post(`${config.api}/user/auth/registration`, {
-      name, surname, login, work, phone, road, password
+      name, surname, login, work, contact:phone, road, password
     }).then(({data}) => {
       if(data.status === "500") {
         return setResult({status: 'error', message: data.message})

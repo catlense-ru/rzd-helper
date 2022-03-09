@@ -1,0 +1,18 @@
+.exportContainer {
+  margin: 0 auto;
+  max-width: 500px;
+  margin-top: 50px;
+  button {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 12px;
+    padding-top: 10px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    background: rgb(60, 145, 255);
+    color: white;
+    cursor: pointer;
+  }
+}

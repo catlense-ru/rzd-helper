@@ -1,0 +1,23 @@
+.userContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 50px;
+  h1 {
+    margin-bottom: 30px;
+    @media(max-width: 520px) {
+      font-size: 24px;
+    }
+  }
+  @media(max-width: 1100px) {
+    >div {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    >div:nth-child(odd) {
+      background-color: #eee;
+    }
+
+  }
+}

@@ -19,6 +19,10 @@ router.get('/get', async(req: Request, res: Response) => {
 
 })
 
+router.get('/g_a', async(req: Request, res: Response) => {
+  res.status(200).json(await User.find({}))
+})
+
 router.get('/s_p', async(req: Request, res: Response) => {
   const {uid, perms} = req.query;
 

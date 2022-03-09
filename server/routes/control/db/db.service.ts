@@ -5,8 +5,32 @@ import Systems from "../../../models/Systems"
 import Comments from '../../../old_db/comments.json'
 import Decisions from '../../../old_db/decision.json'
 import System from '../../../old_db/systems.json'
+import mongoose from "mongoose"
+import Export from "../../../models/Export"
 
 export default class DB {
+
+  async dataExport() {
+    mongoose.connection.db.listCollections({name: 'exports'}).next(() => {
+      mongoose.connection.db.dropCollection('exports', console.log)
+    })
+    const decisions = await Decision.find({})
+
+    decisions.forEach(async e => {
+      const comment:any = await Comment.findOne({uid: e.comment_id})
+      if(!comment) return;
+      const data = new Export({
+        comment: comment.comment,
+        decision: e.decision,
+        by_comment: comment.by_name,
+        by_decision: e.by_name
+      })
+      await data.save()
+    })
+
+    return "ok"
+
+  }
 
   async transfer() : Promise<Object> {
 

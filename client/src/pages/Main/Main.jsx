@@ -13,6 +13,7 @@ export default function Main(props) {
   const [comments, setComments] = useState();
   const [comment, setComment] = useState(0);
   const [decisions, setDecisions] = useState();
+  const [comment_text, setCommentText] = useState('')
 
   useEffect(() => {
     axios.get(`${config.api}/control/systems/getAll`).then(({data}) => {
@@ -34,6 +35,13 @@ export default function Main(props) {
     if(comment !== 0) {
       axios.get(`${config.api}/control/decisions/getByComment?id=${comment}`).then(({data}) => {
         setDecisions(data)
+      })
+      axios.get(`${config.api}/control/comments/getById?id=${comment}`).then(({data}) => {
+        if(data.train !== '') {
+          setCommentText(`${data.comment} для локомотива ${data.train}`)
+        } else {
+          setCommentText(`${data.comment}`)
+        }
       })
     }
   }, [comment])
@@ -66,6 +74,7 @@ export default function Main(props) {
         </div>  
       </div>
       <div className="decisions" style={{marginTop: 100}}>
+        <h3 style={{paddingLeft: 15}}>{comment_text}</h3>
         {
           decisions ? decisions.map(e => <Decision author={e.by_name} key={e.uid}>{e.decision}</Decision>) : null
         }

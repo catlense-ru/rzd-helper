@@ -11,6 +11,8 @@ import { useDispatch } from "react-redux";
 import Join from "./pages/Join/Join";
 import Register from "./pages/Register/Register";
 import Panel from "./pages/Panel/Panel";
+import Users from "./pages/Panel/users/Users";
+import Export from "./pages/Panel/export/Export";
 
 function App() {
 
@@ -29,6 +31,9 @@ function App() {
         <Route path="/join" element={<Join title="Авторизация" />} />
         <Route path="/register" element={<Register title="Регистрация" />} />
         <Route path="/panel" element={<Panel title="Управление" />} />
+
+        <Route path="/panel/users" element={<Users title="Управление пользователями" />} />
+        <Route path="/panel/export" element={<Export title="Экспорт таблицы" />} />
       </Routes>
     </BrowserRouter>
   );
