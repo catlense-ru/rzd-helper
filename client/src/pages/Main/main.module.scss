@@ -13,7 +13,7 @@
     padding-right: 15px;
     margin-top: 40px;
     @media(min-width: 620px) {
-      margin-top: 100px;
+      margin-top: 50px;
     }
     h1 {
       text-align: center;
@@ -43,12 +43,31 @@
         border: 3px solid rgb(17, 140, 255);
       }
     }
+    .whatsapp {
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-radius: 8px;
+      background-color: rgb(238, 248, 255);
+      display: table;
+      margin: 0 auto;
+      margin-bottom: 40px;
+      text-decoration: none;
+      @media(min-width: 620px) {
+        margin-bottom: 50px;
+      }
+      &:hover {
+        text-decoration: none;
+      }
+    }
     a {
       text-decoration: none;
       color: rgb(17, 140, 255);
       display: block;
       text-align: center;
       margin-top: 20px;
+      cursor: pointer;
       &:hover {
         text-decoration: underline;
       }

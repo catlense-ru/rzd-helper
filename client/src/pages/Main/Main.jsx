@@ -78,6 +78,7 @@ export default function Main(props) {
       <Header />
       <div className={s.wrapper}>
         <div className={s.selector}>
+          <a target="_blank" href="https://chat.whatsapp.com/LVS4gxkE85HDwCHAA77AJ3" className={s.whatsapp}>Техническая поддержка в WhatsApp</a>
           <h1>Помощник поиска неисправностей</h1>
           <p>Система</p>
           <select name="" id="" onChange={(e) => setSystem(e.target.value)}>
