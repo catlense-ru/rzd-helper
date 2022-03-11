@@ -78,7 +78,7 @@ export default function Main(props) {
       <Header />
       <div className={s.wrapper}>
         <div className={s.selector}>
-          <a target="_blank" href="https://chat.whatsapp.com/LVS4gxkE85HDwCHAA77AJ3" className={s.whatsapp}>Техническая поддержка в WhatsApp</a>
+          <a target="_blank" rel="noreferrer" href="https://chat.whatsapp.com/LVS4gxkE85HDwCHAA77AJ3" className={s.whatsapp}>Техническая поддержка в WhatsApp</a>
           <h1>Помощник поиска неисправностей</h1>
           <p>Система</p>
           <select name="" id="" onChange={(e) => setSystem(e.target.value)}>
@@ -103,7 +103,7 @@ export default function Main(props) {
         </div>  
       </div>
       <div className="decisions" style={{marginTop: 100}}>
-        <h3 style={{paddingLeft: 15, paddingRight: 15, maxWidth: 'calc(100% - 30px)'}}>{comment_text}</h3>
+        <h3 style={{paddingLeft: 15, paddingRight: 15, width: 'calc(100% - 30px)', maxWidth: 1500, margin: '0 auto', marginBottom: 20}}>{comment_text}</h3>
         {
           decisions ? decisions.map(e => <Decision author={e.by_name} key={e.uid}>{e.decision}</Decision>) : null
         }
