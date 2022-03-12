@@ -35,10 +35,6 @@ export default function Comment(props) {
     })
   }, [])
 
-  useEffect(() => {
-    console.log(system, train)
-  }, [system, train])
-
   const saveMore = () => {
     if(!system || system.trim() === '0') return setResult('Укажите систему')
     if(!train || train.trim() === '0') return setResult('Укажите локомотив')

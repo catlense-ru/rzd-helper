@@ -19,6 +19,9 @@ import Comment from "./pages/Panel/comment/Comment";
 import Decision from "./pages/Panel/decision/Decision";
 import Decisions from "./pages/Panel/decision/Decisions";
 import Liked from "./pages/Panel/liked/Liked";
+import Esystem from "./pages/Panel/Edit/Esystem";
+import Ecomment from "./pages/Panel/Edit/Ecomment";
+import Edecision from "./pages/Panel/Edit/Edecision";
 
 function App() {
 
@@ -46,6 +49,10 @@ function App() {
         <Route path="/panel/decision" element={<Decision title="Создание решения" />} />
         <Route path="/panel/decisions/:id" element={<Decisions title="Добавление решения" />} />
         <Route path="/panel/liked" element={<Liked title="Полезные решения" />} />
+
+        <Route path="/panel/esystem" element={<Esystem title="Редактирование системы" />} />
+        <Route path="/panel/ecomment" element={<Ecomment title="Редактирование замечания" />} />
+        <Route path="/panel/edecision" element={<Edecision title="Редактирование решения" />} />
       </Routes>
     </BrowserRouter>
   );

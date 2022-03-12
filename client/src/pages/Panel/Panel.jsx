@@ -22,9 +22,8 @@ export default function Panel(props) {
           <Link to="/panel/system">Добавить систему</Link>
           <Link to="/panel/locomotive">Добавить серию локомотива</Link>
           <Link to="/panel/esystem">Изменить систему</Link>
-          <Link to="/panel/edecision">Изменить решение</Link>
           <Link to="/panel/ecomment">Изменить замечание</Link>
-          <Link to="/panel/elocomotive">Изменить серию локомотива</Link>
+          <Link to="/panel/edecision">Изменить решение</Link>
           <hr/>
           <Link to="/panel/comment">Добавить замечание</Link>
           <Link to="/panel/decision">Добавить решение</Link>

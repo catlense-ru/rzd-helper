@@ -8,19 +8,22 @@ export default class Comments {
   }
   
   async getById(id: string = '1'): Promise<Object> {
+    if(!parseInt(id)) return {status: 'error', message: 'Ошибка'}
     const response = await Comment.findOne({uid: id})
     return response
   }
 
   async getBySystem(system_id: string = '1'): Promise<Object> {
+    if(!parseInt(system_id)) return {status: 'error', message: 'Ошибка'}
     return await Comment.find({system_id})
   }
 
-  async isExistsById(id: string = '1'): Promise<boolean> {
+  async isExistsById(id: string = '1') {
+    if(!parseInt(id)) return {status: 'error', message: 'Ошибка'}
     return await Comment.findOne({uid: id}) ? true : false
   }
 
-  async isExistsByName(comment: string): Promise<boolean> {
+  async isExistsByName(comment: string) {
     return await Comment.findOne({comment}) !== null ? true : false
   }
 
