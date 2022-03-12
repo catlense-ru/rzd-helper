@@ -1,4 +1,5 @@
 import Decision from "../../../models/Decision"
+import User from "../../../models/User"
 
 export default class Decisions {
 
@@ -41,6 +42,43 @@ export default class Decisions {
     decisions.decision = decision
     await decisions.save()
     return {status: 'success', message: 'Успешно изменено'}
+  }
+
+  async like(uid: string, decision_id: string) {
+    const decision = await Decision.findOne({uid: decision_id})
+    const user = await User.findOne({uid})
+    if(!decision) return {status: 'error', message: 'Решение не найдено'}
+    if(!user) return {status: 'error', message: 'Пользователь не найден'}
+    let move
+    if(decision.likes.find((e: string) => e === uid)) {
+      const indexDecision = decision.likes.indexOf(uid)
+      const indexUser = user.liked.indexOf(decision_id)
+      decision.likes.splice(indexDecision, 1)
+      user.liked.splice(indexUser, 1)
+      move = 'delete'
+    } else {
+      user.liked.push(decision_id)
+      decision.likes.push(uid)
+      move = 'add'
+    }
+
+    await decision.save()
+    await user.save()
+
+    return {status: 'success', message: 'Успешно', move}
+
+  }
+
+  async getLikes(uid: string = '1') {
+    const decision = await Decision.findOne({uid})
+    if(!decision) return {status: 'error', message: 'Решение не найдено'}
+    return {status: 'success', message: 'успешно', likes: decision.likes}
+  }
+
+  async getLiked(uid: string = '1') {
+    const user:any = await User.findOne({uid})
+    if(!user) return {status: 'error', message: 'Пользователь не найден'}
+    return {status: 'success', message: 'успешно', liked: user.liked}
   }
 
 }

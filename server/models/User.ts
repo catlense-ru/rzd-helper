@@ -11,7 +11,8 @@ const schema = new Schema({
   permissions: Number,
   contact: String,
   token: String,
-  stat: [Object]
+  stat: [Object],
+  liked: [String]
 })
 
 export default model('User', schema)

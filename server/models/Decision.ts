@@ -5,7 +5,8 @@ const schema = new Schema({
   comment_id: Number,
   decision: String,
   by: Number,
-  by_name: String
+  by_name: String,
+  likes: [String]
 })
 
 export default model('Decision', schema)

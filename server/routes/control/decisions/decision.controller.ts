@@ -30,4 +30,19 @@ router.post('/edit', async(req: Request, res: Response) => {
   return res.status(200).json(await decisions.edit(req.body.decision_id, req.body.decision))
 })
 
+router.post('/like', async(req: Request, res: Response) => {
+  const {uid, decision_id} = req.body
+  return res.status(200).json(await decisions.like(uid, decision_id))
+})
+
+router.get('/getLikes', async(req: Request, res: Response) => {
+  const {id} = req.query
+  return res.status(200).json(await decisions.getLikes(id?.toString()))
+})
+
+router.get('/getLiked', async(req: Request, res: Response) => {
+  const {uid} = req.query
+  return res.status(200).json(await decisions.getLiked(uid?.toString()))
+})
+
 export default router
