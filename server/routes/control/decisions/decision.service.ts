@@ -70,12 +70,14 @@ export default class Decisions {
   }
 
   async getLikes(uid: string = '1') {
+    if(!parseInt(uid)) return {status: 'error', message: 'Передайте ID решения'}
     const decision = await Decision.findOne({uid})
     if(!decision) return {status: 'error', message: 'Решение не найдено'}
     return {status: 'success', message: 'успешно', likes: decision.likes}
   }
 
   async getLiked(uid: string = '1') {
+    if(!parseInt(uid)) return {status: 'error', message: 'Передайте ID пользователя'}
     const user:any = await User.findOne({uid})
     if(!user) return {status: 'error', message: 'Пользователь не найден'}
     return {status: 'success', message: 'успешно', liked: user.liked}

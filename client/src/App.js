@@ -18,6 +18,7 @@ import Locomotive from "./pages/Panel/locomotive/Locomotive";
 import Comment from "./pages/Panel/comment/Comment";
 import Decision from "./pages/Panel/decision/Decision";
 import Decisions from "./pages/Panel/decision/Decisions";
+import Liked from "./pages/Panel/liked/Liked";
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
         <Route path="/panel/comment" element={<Comment title="Создание замечания"/>} />
         <Route path="/panel/decision" element={<Decision title="Создание решения" />} />
         <Route path="/panel/decisions/:id" element={<Decisions title="Добавление решения" />} />
+        <Route path="/panel/liked" element={<Liked title="Полезные решения" />} />
       </Routes>
     </BrowserRouter>
   );

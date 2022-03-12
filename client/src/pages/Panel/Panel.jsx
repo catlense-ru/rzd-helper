@@ -1,12 +1,14 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import s from './panel.module.scss'
 
 export default function Panel(props) {
 
+  const navigate = useNavigate()
   const user = useSelector(state => state.user)
+  if(user.permissions < 1) navigate('/')
 
   if(user.permissions > 1) {
     return (
@@ -26,6 +28,7 @@ export default function Panel(props) {
           <hr/>
           <Link to="/panel/comment">Добавить замечание</Link>
           <Link to="/panel/decision">Добавить решение</Link>
+          <Link to="/panel/liked">Полезные решения</Link>
         </div>
         <Footer /> 
 
@@ -40,6 +43,7 @@ export default function Panel(props) {
       <div className={s.mainContainer}>
         <h1>Панель управления</h1>        
         <Link to="/panel/decision">Добавить решение</Link>
+        <Link to="/panel/liked">Полезные решения</Link>
       </div>
       <Footer /> 
     </>
