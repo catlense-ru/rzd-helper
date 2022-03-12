@@ -7,64 +7,105 @@ import Decisions from '../../../old_db/decision.json'
 import System from '../../../old_db/systems.json'
 import mongoose from "mongoose"
 import Export from "../../../models/Export"
-
-import fs from 'fs'
-import path from 'path'
 import nodemailer from 'nodemailer'
-const json2csv = require('json2csv').parse
-// @ts-ignore
-import convertCsvToXlsx from '@aternus/csv-to-xlsx'
+
+import User from "../../../models/User"
 
 export default class DB {
 
+  async initExport() {
+    const users = await User.find({})
+    const decisions = await Decision.find({})
+    const comments = await Comment.find({})
+
+    for (let x = 0; x <= await Export.count(); x++) {
+      await Export.remove().exec()
+    }
+
+    users.forEach(async user => {
+      let countDecision = 0
+      let countComment = 0
+      decisions.forEach(decision => {
+        decision.by === user.uid && countDecision++
+      })
+
+      comments.forEach(comment => {
+        comment.by === user.uid && countComment++
+      })
+
+      const exportData = new Export({
+        uid: await Export.count() + 1,
+        name: user.name,
+        surname: user.surname,
+        road: user.road,
+        work: user.work,
+        contact: user.contact,
+        decisions: countDecision,
+        comments: countComment
+      })
+
+      await exportData.save()
+    })
+  }
+
   async dataExport() {
-    // mongoose.connection.db.listCollections({ name: 'exports' }).next(() => {
-    //   mongoose.connection.db.dropCollection('exports', console.log)
-    // })
-    // const decisions = await Decision.find({})
+    this.initExport()
+    const exportData = await Export.find({})
 
-    // decisions.forEach(async e => {
-    //   const comment: any = await Comment.findOne({ uid: e.comment_id })
-    //   if (!comment) return;
-    //   const data = new Export({
-    //     comment: comment.comment,
-    //     decision: e.decision,
-    //     by_comment: comment.by_name,
-    //     by_decision: e.by_name
-    //   })
-    //   await data.save()
-    // })
+    const fs = require('fs')
+    const path = require('path')
+    const json2csv = require('json2csv').parse
 
-    const result = await Export.find({})
+    const convertCsvToXlsx = require('@aternus/csv-to-xlsx');
 
     const fields = [
       {
-        label: 'comment',
-        value: 'Замечание'
+        value: 'uid',
+        label: 'ID'
       },
       {
-        label: 'decision',
-        value: 'Решение'
+        value: 'name',
+        label: 'Имя'
       },
       {
-        label: 'by_comment',
-        value: 'Замечание добавил'
+        value: 'surname',
+        label: 'Фамилия'
       },
       {
-        label: 'by_decision',
-        value: 'Решение добавил'
+        value: 'road',
+        label: 'Дорога'
+      },
+      {
+        value: 'work',
+        label: 'ТРПУ'
+      },
+      {
+        value: 'contact',
+        label: 'Телефон'
+      },
+      {
+        value: 'comments',
+        label: 'Замечания'
+      },
+      {
+        value: 'decisions',
+        label: 'Решения'
       }
     ]
 
-    let csv = json2csv(result, { fields }, { withBOM: true })
-
-    console.log(csv)
-    return
+    let csv
+    try {
+      csv = json2csv(exportData, { fields }, { withBOM: true })
+    } catch (err) {
+      return err
+    }
 
     const date = new Date().toLocaleDateString().replace('.', '-').replace('.', '-') + '-' + new Date().toLocaleTimeString().replace(':', '-').replace(':', '-')
     const filePath = path.join(__dirname, 'exports', `export-${date}.csv`)
-
-    fs.writeFile(filePath, csv, (err) => {
+    if (!fs.existsSync(path.join(__dirname, 'exports'))) {
+      fs.promises.mkdir(path.join(__dirname, 'exports'))
+    }
+    fs.writeFile(filePath, csv, (err: any) => {
       if (err) {
         return console.log(err)
       } else {
@@ -76,44 +117,41 @@ export default class DB {
         convertCsvToXlsx(source, destination)
       }
     })
-
     let smtpTransport = nodemailer.createTransport({
       host: "smtp.yandex.ru",
       port: 465,
       auth: {
-        user: "catlense@voronin.xyz",
+        user: "work@voronin.xyz",
         pass: "!ac@Xs3&7s"
       }
     })
 
     let mail = {
-      from: 'catlense@voronin.xyz',
-      to: 'max@voronin.xyz',
+      from: "work@voronin.xyz",
+      to: "max@voronin.xyz, e_voronin@mail.ru",
       subject: `Экспорт базы данных на ${new Date().toLocaleDateString()}`,
-      text: 'База данных в виде Excel таблицы',
+      text: `Актуальная информация на ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
       attachments: [
         {
-          file: `export-${new Date().toLocaleDateString()}.xlsx`,
-          path: path.join(__dirname, 'exports', `export-${date}.xlsx`)
+          file: "export.xlsx",
+          path: path.join(__dirname, 'exports', 'export-' + date + '.xlsx')
         }
       ]
     }
 
-    // smtpTransport.sendMail(mail, (err, res) => {
-    //   if(err) return console.log(err)
-    //   console.log(`Message send ${res.response}`)
-    //   smtpTransport.close()
-    // })
+    smtpTransport.sendMail(mail, (err, res) => {
+      if (err) { return console.log(err) }
+      console.log(`Message send: ${res.response}`)
 
-
+      smtpTransport.close()
+    })
     return "ok"
-
   }
 
   async transfer(): Promise<Object> {
-    
+
     Comments.forEach(async c => {
-      if(await Comment.findOne({uid: c.uid})) return;
+      if (await Comment.findOne({ uid: c.uid })) return;
       const comments = new Comment({
         uid: c.uid,
         comment: c.comment,
@@ -127,7 +165,7 @@ export default class DB {
     })
 
     Decisions.forEach(async c => {
-      if(await Decision.findOne({uid: c.uid})) return;
+      if (await Decision.findOne({ uid: c.uid })) return;
       const comments = new Decision({
         uid: c.uid,
         comment_id: c.comment_id,
@@ -140,7 +178,7 @@ export default class DB {
     })
 
     System.forEach(async c => {
-      if(await Systems.findOne({uid: c.uid})) return;
+      if (await Systems.findOne({ uid: c.uid })) return;
       const comments = new Systems({
         uid: c.uid,
         name: c.name,
