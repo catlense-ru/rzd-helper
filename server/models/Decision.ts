@@ -6,6 +6,7 @@ const schema = new Schema({
   decision: String,
   by: Number,
   by_name: String,
+  photo: String,
   likes: [String]
 })
 

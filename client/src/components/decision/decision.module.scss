@@ -7,13 +7,18 @@
   padding-bottom: 15px;
   padding-top: 15px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   p {
     margin: 0;
     padding: 0;
     @media(max-width: 710px) {
       width: 100%;
     }
+  }
+  img {
+    width: 100%;
+    margin-top: 10px;
+    display: block;
   }
   button {
     border-radius: 8px;
@@ -27,6 +32,8 @@
     background: rgb(231, 243, 255);
     cursor: pointer;
     transition: background .3s, color .3s;
+    width: 100%;
+    margin-top: 15px;
     &.active {
       background-color: rgb(29, 146, 255);
       color: rgb(231, 243, 255);

@@ -20,7 +20,9 @@ export default function Decision(props) {
   const [comment, setComment] = useState(0);
 
   const [decision, setDecision] = useState('')
+  const [selectedFile, setSelectedFile] = useState(null)
   const [result, setResult] = useState('')
+  const [pathToImage, setPathToImage] = useState()
 
   useEffect(() => {
     axios.get(`${config.api}/control/systems/getAll`).then(({ data }) => {
@@ -37,6 +39,24 @@ export default function Decision(props) {
     }
   }, [system])
 
+  useEffect(async() => {
+    console.log(selectedFile)
+
+    if(selectedFile) {
+      const formData = new FormData()
+      formData.append('photo', selectedFile)
+      await axios.post(`${config.api}/upload`, formData, {
+        headers: {
+          'content-type': 'multipart/form-data'
+        }
+      }).then(({data}) => {
+        console.log(data)
+        setPathToImage(data.response)
+        setResult('Файл загружен')
+      })
+    }
+  }, [selectedFile])
+
   const sendData = () => {
     if(!decision || decision.trim() === '') return setResult('Укажите решение')
     axios.post(`${config.api}/control/decisions/create`, {
@@ -44,9 +64,11 @@ export default function Decision(props) {
       decision: decision,
       by: user.uid,
       by_name: `${user.name} ${user.surname}`,
+      photo: pathToImage
     }).then(({ data }) => {
       setResult(data.message)
       setDecision('')
+      setPathToImage('')
     })
   }
 
@@ -76,8 +98,13 @@ export default function Decision(props) {
 
         <p>Ваше решение</p>
         <textarea placeholder="Напишите одно решение, после сохранения пишите второе и т.д." onChange={({ target }) => setDecision(target.value)} value={decision}></textarea>
+        <label htmlFor="file">Загрузить фото</label>
+        <input type="file" id="file" accept="image/*" style={{display: 'none'}} onChange={({target}) => setSelectedFile(target.files[0])} />
         <button onClick={sendData}>Сохранить</button>
         <p>{result}</p>
+        {
+          pathToImage && <img src={`${config.api}/${pathToImage}`} alt="Image" />
+        }
       </div>
       <Footer />
     </>

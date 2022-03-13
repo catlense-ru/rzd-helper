@@ -33,7 +33,11 @@ export default function Decision(props) {
   return(
     <>
       <div className={s.decision} uid={props.uid}>
-        <p>{props.children} - <i>{props.author}</i></p>
+        <div>
+          <p>{props.children} - <i>{props.author}</i></p>
+          {props.image && <img src={`${config.api}/${props.image}`} />}
+        </div>
+        
         {
           user.login ? 
           <button className={active ? s.active : null} onClick={changeActive}>Полезно</button>

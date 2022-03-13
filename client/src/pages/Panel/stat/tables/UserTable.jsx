@@ -26,7 +26,7 @@ export default function UserTable() {
     <div>
       <Graph by="ФИО" road="Дорога" work="ТРПУ" comments="Замечания" decisions="Решения" />
       {
-        users && users.map(e => <Graph by={e.by} road={e.road} work={e.work} decisions={e.decisions} comments={e.comments} />)
+        users && users.map(e => <Graph by={e.by} key={e.by} road={e.road} work={e.work} decisions={e.decisions} comments={e.comments} />)
       }
     </div>
   )

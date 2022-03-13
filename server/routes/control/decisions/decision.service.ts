@@ -25,10 +25,11 @@ export default class Decisions {
     return await Decision.findOne({decision}) !== null
   }
 
-  async create(comment_id: string, decision: string, by: string, by_name: string) {    
+  async create(comment_id: string, decision: string, by: string, by_name: string, photo: string) {    
     const decisions = new Decision({
       uid: await Decision.count() + 99,
-      comment_id, decision, by, by_name
+      comment_id, decision, by, by_name,
+      photo
     })
 
     return decisions.save()
