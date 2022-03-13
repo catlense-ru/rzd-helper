@@ -2,17 +2,19 @@
   margin: 0 auto;
   max-width: 500px;
   margin-top: 50px;
+  p {
+    text-align: center;
+  }
   button {
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 12px;
-    padding-top: 10px;
-    display: block;
+    height: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 8px;
+    border: none;
     margin: 0 auto;
-    border-radius: 10px;
-    border: 1px solid #eee;
+    display: block;
+    font-size: 15px;
     background: rgb(60, 145, 255);
     color: white;
-    cursor: pointer;
   }
 }

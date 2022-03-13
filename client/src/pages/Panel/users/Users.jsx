@@ -13,7 +13,6 @@ export default function Users(props) {
   const navigate = useNavigate()
   const user = useSelector(state => state.user)
   if(!user.login || user.permissions < 2) { navigate('/') }
-  console.log(user)
   
   const [users, setUsers] = useState()
   

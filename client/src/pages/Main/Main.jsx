@@ -35,7 +35,6 @@ export default function Main(props) {
   }, [])
 
   useEffect(() => {
-    console.log(system)
     if(system !== 0) {
       axios.get(`${config.api}/control/comments/getBySystem?id=${system}`).then(({data}) => {
         data.sort((a, b) => {
@@ -53,7 +52,6 @@ export default function Main(props) {
   }, [system])
 
   useEffect(() => {
-    console.log(comment)
     if(comment !== 0) {
       axios.get(`${config.api}/control/decisions/getByComment?id=${comment}`).then(({data}) => {
         setDecisions(data)
@@ -67,10 +65,6 @@ export default function Main(props) {
       })
     }
   }, [comment])
-
-  useEffect(() => {
-    console.log(decisions)
-  }, [decisions])
 
   return(
     <>
