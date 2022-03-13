@@ -10,10 +10,10 @@ export default function UserTable() {
   useEffect(() => {
     axios.get(`${config.api}/control/stat/users`).then(({data}) => {
       data.sort((a, b) => {
-        if ( a.name.toLowerCase() < b.name.toLowerCase() ){
+        if ( a.road.toLowerCase() < b.road.toLowerCase() ){
           return -1;
         }
-        if ( a.name.toLowerCase() > b.name.toLowerCase() ){
+        if ( a.road.toLowerCase() > b.road.toLowerCase() ){
           return 1;
         }
         return 0;
