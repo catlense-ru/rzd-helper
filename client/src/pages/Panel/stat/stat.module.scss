@@ -1,0 +1,66 @@
+.statContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  h1 {
+    text-align: center;
+    margin-top: 100px;
+    @media(max-width: 520px) {
+      font-size: 24px;
+      margin-top: 50px;
+    }
+  }
+  p {
+    text-align: center;
+  }
+  .switcher {
+    width: calc(100% - 10px);
+    min-height: 52px;
+    border-radius: 8px;
+    background: rgb(241, 242, 243);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    padding-left: 0;
+    padding-right: 0;
+    .btn {
+      border-radius: 8px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      padding-left: 15px;
+      padding-right: 15px;
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+      margin-left: 5px;
+      margin-right: 5px;
+      cursor: pointer;
+      transition: background .3s;
+      &:hover {
+        background-color: rgb(248, 248, 248);
+      }
+      &.active {
+        background: white;
+      }
+    }
+  }
+}
+
+.graph {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 80px;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  p {
+    width: 100%;
+  }
+  p::selection {
+    background: #eee;
+  }
+}

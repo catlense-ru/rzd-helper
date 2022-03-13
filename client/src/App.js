@@ -22,6 +22,7 @@ import Liked from "./pages/Panel/liked/Liked";
 import Esystem from "./pages/Panel/Edit/Esystem";
 import Ecomment from "./pages/Panel/Edit/Ecomment";
 import Edecision from "./pages/Panel/Edit/Edecision";
+import Stat from "./pages/Panel/stat/Stat";
 
 function App() {
 
@@ -53,6 +54,7 @@ function App() {
         <Route path="/panel/esystem" element={<Esystem title="Редактирование системы" />} />
         <Route path="/panel/ecomment" element={<Ecomment title="Редактирование замечания" />} />
         <Route path="/panel/edecision" element={<Edecision title="Редактирование решения" />} />
+        <Route path="/panel/stat" element={<Stat title="Статистика сайта" />} />
       </Routes>
     </BrowserRouter>
   );
