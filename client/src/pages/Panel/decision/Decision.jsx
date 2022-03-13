@@ -98,8 +98,8 @@ export default function Decision(props) {
 
         <p>Ваше решение</p>
         <textarea placeholder="Напишите одно решение, после сохранения пишите второе и т.д." onChange={({ target }) => setDecision(target.value)} value={decision}></textarea>
-        <label htmlFor="file">Загрузить фото</label>
-        <input type="file" id="file" accept="image/*" style={{display: 'none'}} onChange={({target}) => setSelectedFile(target.files[0])} />
+        {/* <label htmlFor="file">Загрузить фото</label>
+        <input type="file" id="file" accept="image/*" style={{display: 'none'}} onChange={({target}) => setSelectedFile(target.files[0])} /> */}
         <button onClick={sendData}>Сохранить</button>
         <p>{result}</p>
         {
