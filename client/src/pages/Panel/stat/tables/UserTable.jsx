@@ -9,6 +9,15 @@ export default function UserTable() {
 
   useEffect(() => {
     axios.get(`${config.api}/control/stat/users`).then(({data}) => {
+      data.sort((a, b) => {
+        if ( a.name.toLowerCase() < b.name.toLowerCase() ){
+          return -1;
+        }
+        if ( a.name.toLowerCase() > b.name.toLowerCase() ){
+          return 1;
+        }
+        return 0;
+      })
       setUsers(data)
     })
   }, [])
