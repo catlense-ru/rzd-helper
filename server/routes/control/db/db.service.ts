@@ -100,7 +100,7 @@ export default class DB {
       return err
     }
 
-    const filePath = path.join(__dirname, 'exports', `export-${Date.now()}.csv`)
+    const filePath = path.join(__dirname, 'exports', `export${Date.now()}.csv`)
     if (!fs.existsSync(path.join(__dirname, 'exports'))) {
       fs.promises.mkdir(path.join(__dirname, 'exports'))
     }
@@ -112,7 +112,7 @@ export default class DB {
           fs.unlinkSync(filePath); // delete this file after 30 seconds
         }, 30000)
         let source = filePath
-        let destination = path.join(__dirname, 'exports', `export-${Date.now()}.xlsx`)
+        let destination = path.join(__dirname, 'exports', `export${Date.now()}.xlsx`)
         convertCsvToXlsx(source, destination)
       }
     })
@@ -133,7 +133,7 @@ export default class DB {
       attachments: [
         {
           file: "export.xlsx",
-          path: path.join(__dirname, 'exports', 'export-' + Date.now() + '.xlsx')
+          path: path.join(__dirname, 'exports', `export${Date.now()}.xlsx`)
         }
       ]
     }
