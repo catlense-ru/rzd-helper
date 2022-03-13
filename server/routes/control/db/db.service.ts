@@ -34,7 +34,7 @@ export default class DB {
       })
 
       const exportData = new Export({
-        uid: await Export.count() + 1,
+        uid: user.uid,
         name: user.name,
         surname: user.surname,
         road: user.road,
