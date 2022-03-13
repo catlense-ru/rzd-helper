@@ -60,10 +60,6 @@ export default class DB {
 
     const fields = [
       {
-        value: 'uid',
-        label: 'ID'
-      },
-      {
         value: 'name',
         label: 'Имя'
       },
