@@ -17,6 +17,10 @@ router.get('/exportdecisions', async(req: Request, res: Response) => {
   res.status(200).json(await db.exportDecisions())
 })
 
+router.get('/exportsystems', async(req: Request, res: Response) => {
+  res.status(200).json(await db.exportSystems())
+})
+
 setInterval(async() => {
   if(new Date().getHours() === 7 && new Date().getMinutes() === 30) {
     await db.dataExport()
