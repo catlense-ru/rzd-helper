@@ -67,7 +67,8 @@ export default class DB {
         by_comment: comment.by_name,
         system: system.name,
         comment: comment.comment,
-        decision: decision.decision
+        decision: decision.decision,
+        likes: decision.likes.length.toString()
       })
 
       await exportData.save()
@@ -104,6 +105,10 @@ export default class DB {
       {
         value: 'decision',
         label: 'Решение'
+      },
+      {
+        value: 'likes',
+        label: 'Отметок полезно'
       }
     ]
 

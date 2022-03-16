@@ -6,7 +6,8 @@ const schema = new Schema({
   by_comment: String,
   system: String,
   comment: String,
-  decision: String
+  decision: String,
+  likes: Number
 })
 
 export default model('ExportDecisions', schema)

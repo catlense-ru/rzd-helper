@@ -8,4 +8,8 @@ router.get('/users', async(req: Request, res: Response) => {
   res.status(200).json(await stat.getUsers())
 })
 
+router.get('/systems', async(req: Request, res: Response) => {
+  res.status(200).json(await stat.getSystems())
+})
+
 export default router

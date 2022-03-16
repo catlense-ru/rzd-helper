@@ -74,3 +74,29 @@
     background: #eee;
   }
 }
+
+.table {
+  width: calc(100% - 32px);
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #eee;
+  .graph {
+    height: auto;
+    max-width: none;
+    p {
+      border-left: 1px solid #eee;
+      padding-left: 15px;
+      padding-right: 15px;
+      text-align: center;
+      height: auto;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:last-child {
+        border-right: 1px solid #eee;
+      }
+    }
+  }
+}
