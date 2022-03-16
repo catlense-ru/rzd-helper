@@ -55,7 +55,7 @@ app.post('/upload', imageUpload.single('photo'), (req: Request, res: Response) =
   res.json({response: file.path})
 })
 
-app.get('/image/:filename', (req: Request, res: Response) => {
+app.get('/images/:filename', (req: Request, res: Response) => {
   const { filename } = req.params
   return res.sendFile(path.join(__dirname, 'images', filename))
 })
