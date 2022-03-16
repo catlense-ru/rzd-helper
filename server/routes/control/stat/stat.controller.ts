@@ -9,7 +9,8 @@ router.get('/users', async(req: Request, res: Response) => {
 })
 
 router.get('/systems', async(req: Request, res: Response) => {
-  res.status(200).json(await stat.getSystems())
+  // res.status(200).json(await stat.getSystems())
+  res.status(200).json({status: 'not work', message: 'sorry'})
 })
 
 export default router

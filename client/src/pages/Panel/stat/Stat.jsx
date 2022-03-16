@@ -19,8 +19,8 @@ export default function Stat(props) {
       </div>
     </div>
     {
-      currentPage === 'users' ? <UserTable /> :
-      currentPage === 'system' ? <SystemTable /> : null
+      currentPage === 'users' ? <UserTable /> : null
+      // currentPage === 'system' ? <SystemTable /> : null
     }
     <Footer />
     </>
