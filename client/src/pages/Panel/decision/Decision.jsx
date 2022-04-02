@@ -24,6 +24,8 @@ export default function Decision(props) {
   const [result, setResult] = useState('')
   const [pathToImage, setPathToImage] = useState()
 
+  const [loading, setLoading] = useState(false)
+
   useEffect(() => {
     axios.get(`${config.api}/control/systems/getAll`).then(({ data }) => {
       setSystems(data)
@@ -43,6 +45,7 @@ export default function Decision(props) {
     console.log(selectedFile)
 
     if(selectedFile) {
+      setLoading(true)
       const formData = new FormData()
       formData.append('photo', selectedFile)
       await axios.post(`${config.api}/upload`, formData, {
@@ -53,6 +56,7 @@ export default function Decision(props) {
         console.log(data)
         setPathToImage(data.response)
         setResult('Файл загружен')
+        setLoading(false)
       })
     }
   }, [selectedFile])
@@ -102,6 +106,7 @@ export default function Decision(props) {
         <input type="file" id="file" accept="image/*" style={{display: 'none'}} onChange={({target}) => setSelectedFile(target.files[0])} />
         <button onClick={sendData}>Сохранить</button>
         <p>{result}</p>
+        <p>{loading && 'Загрузка...'}</p>
         {
           pathToImage && <img src={`${config.api}/${pathToImage}`} alt="Image" />
         }
