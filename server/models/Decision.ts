@@ -7,7 +7,8 @@ const schema = new Schema({
   by: Number,
   by_name: String,
   photo: String,
-  likes: [String]
+  likes: [String],
+  hidden: String
 })
 
 export default model('Decision', schema)

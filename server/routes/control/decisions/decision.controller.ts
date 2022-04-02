@@ -45,4 +45,10 @@ router.get('/getLiked', async(req: Request, res: Response) => {
   return res.status(200).json(await decisions.getLiked(uid?.toString()))
 })
 
+router.get('/delete', async(req: Request, res: Response) => {
+  const {uid, user_token} = req.query
+  if(!uid || !user_token) return res.status(200).json({status: 'error', message: 'Укажите ID замечания и токен пользователя'})
+  res.status(200).json(await decisions.deleteDecision(uid, user_token))
+})
+
 export default router

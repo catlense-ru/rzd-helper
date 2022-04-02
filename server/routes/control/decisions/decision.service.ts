@@ -84,4 +84,12 @@ export default class Decisions {
     return {status: 'success', message: 'успешно', liked: user.liked}
   }
 
+  async deleteDecision(uid:any, user_token:any) {
+    const decision = await Decision.findOne({uid})
+    if(!decision) return {status: 'error', message: 'решение не найдено'}
+    decision.hidden = 'hidden'
+    await decision.save()
+    return {status: 'success', message: 'успешно деактивировано'}
+  }
+
 }

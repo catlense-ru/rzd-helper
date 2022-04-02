@@ -99,7 +99,7 @@ export default function Main(props) {
       <div className="decisions" style={{marginTop: 100}}>
         <h3 style={{paddingLeft: 15, paddingRight: 15, width: 'calc(100% - 30px)', maxWidth: 1500, margin: '0 auto', marginBottom: 20}}>{comment_text}</h3>
         {
-          decisions ? decisions.map(e => <Decision author={e.by_name} uid={e.uid} key={e.uid} image={e.photo}>{e.decision}</Decision>) : null
+          decisions && decisions.map(e => e.hidden !== 'hidden' && <Decision author={e.by_name} uid={e.uid} key={e.uid} image={e.photo}>{e.decision}</Decision>)
         }
       </div>
       <Footer />
