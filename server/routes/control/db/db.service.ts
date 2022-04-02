@@ -10,6 +10,7 @@ import Export from "../../../models/Export"
 import nodemailer from 'nodemailer'
 
 import User from "../../../models/User"
+import ExportSystems from "../../../models/ExportSystems"
 
 export default class DB {
 
@@ -73,6 +74,58 @@ export default class DB {
 
       await exportData.save()
     })
+  }
+
+  async initSystemsExport() {
+    for (let x = 0; x <= await ExportDecisions.count(); x++) {
+      await ExportSystems.remove().exec()
+    }
+
+    const users = await User.find({})
+    const decisions = await Decision.find({})
+    const comments = await Comment.find({})
+    const systems = await Systems.find({})
+
+    users.forEach(async user => {
+      const userResult:any = {
+        name: `${user.name} ${user.surname}`,
+        road: user.road,
+        systems: []
+      }
+      systems.forEach(async system => {
+        let countDecision = 0
+        let countComment = 0
+        decisions.forEach(async decision => {
+          const comment = await Comment.findOne({uid: decision.comment_id})
+          if(!comment) return
+          (decision.by === user.uid && comment.system_id === system.uid) && countDecision++
+        })
+        comments.forEach(comment => {
+          (comment.by === user.uid && comment.system_id === system.uid) && countComment++
+        })
+        const sys = {
+          system_name: system.name,
+          system_id: system.uid,
+          decisions: countDecision,
+          comments: countComment
+        }
+        userResult.systems.push(sys)
+      })
+      const db = new ExportSystems({
+        uid: await ExportSystems.count(),
+        name: `${user.name} ${user.surname}`,
+        road: user.road,
+        work: user.work,
+        systems: userResult.systems
+      })
+      await db.save()
+    })
+  }
+
+  async exportSystems() {
+    this.initSystemsExport()
+    const exportData = await ExportSystems.find({})
+    return exportData
   }
 
   async exportDecisions() {
