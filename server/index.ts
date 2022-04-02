@@ -38,6 +38,12 @@ app.use(express.urlencoded({ extended: true }))
 app.use((_, __, next) => {
   next()
 })
+app.use((_, res, next) => {
+  res.append('Access-Control-Allow-Origin', ['*']);
+  res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.append('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 
 app.use('/user', UserController)
 app.use('/control', ControlController)
