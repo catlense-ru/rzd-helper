@@ -36,7 +36,7 @@ export default function Search(props) {
             if(e.comment) {
               return <>
                 <p style={{borderTop: '1px solid #eee', paddingTop: 15, marginTop: 15}}><b>{e.comment}</b></p>
-                {e.decisions.map(e => {return <Decision author={e.by} uid={e.uid}>{e.decision}</Decision>})}
+                {e.decisions.map(e => {return <Decision author={e.by} uid={e.uid} image={e.photo}>{e.decision}</Decision>})}
               </>
             } else {
               return <Decision author={e.by} uid={e.uid}>{e.decision}</Decision>
