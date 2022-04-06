@@ -24,6 +24,7 @@ import Ecomment from "./pages/Panel/Edit/Ecomment";
 import Edecision from "./pages/Panel/Edit/Edecision";
 import Stat from "./pages/Panel/stat/Stat";
 import DDecision from "./pages/Panel/Delete/DDecision";
+import Search from "./pages/Search/Search";
 
 function App() {
 
@@ -59,6 +60,8 @@ function App() {
         <Route path="/panel/ddecision" element={<DDecision title="Деактивация решения" />} />
 
         <Route path="/panel/stat" element={<Stat title="Статистика сайта" />} />
+
+        <Route path="/search" element={<Search title="Поиск по сайту" />} />
       </Routes>
     </BrowserRouter>
   );

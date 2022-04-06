@@ -1,0 +1,41 @@
+.wrapper {
+  margin-top: 30px;
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 0;
+    @media(max-width: 480px) {
+      font-size: 24px;
+    }
+  }
+  input {
+    padding-left: 15px;
+    width: calc(100% - 45px);
+    max-width: 520px;
+    margin: 0 auto;
+    display: block;
+    margin-top: 20px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    font-size: 14px;
+  }
+
+  button.send {
+    width: calc(100% - 25px);
+    max-width: 538px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    height: 42px;
+    border-radius: 8px;
+    color: white;
+    border: none;
+    background: #36a4ff;
+    user-select: none;
+    font-size: 14px;
+  }
+  p {
+    text-align: center;
+  }
+}

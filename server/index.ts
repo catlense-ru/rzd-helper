@@ -1,13 +1,13 @@
 import 'dotenv/config'
 import express, { Request, Response } from 'express'
 import mongoose from 'mongoose'
-import cors from 'cors'
 import path from 'path'
 import multer from 'multer'
 import fs from 'fs'
 
 import UserController from './routes/user/user.routes'
 import ControlController from './routes/control/control.routes'
+import SearchController from './routes/search/search.routes'
 
 mongoose.connect('mongodb://127.0.0.1:27017/rzd-helper').then(() => console.log('MongoDB Connected'))
 
@@ -46,6 +46,7 @@ app.use((_, res, next) => {
 
 app.use('/user', UserController)
 app.use('/control', ControlController)
+app.use('/search', SearchController)
 
 if (!fs.existsSync(path.join(__dirname, 'images'))) {
   fs.promises.mkdir(path.join(__dirname, 'images'))
