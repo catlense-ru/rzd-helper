@@ -30,6 +30,7 @@ export default function Panel(props) {
           <Link to="/panel/comment">Добавить замечание</Link>
           <Link to="/panel/decision">Добавить решение</Link>
           <Link to="/panel/liked">Полезные решения</Link>
+          <Link to="/panel/mydecision">Мои решения</Link>
         </div>
         <Footer /> 
 
@@ -45,6 +46,7 @@ export default function Panel(props) {
         <h1>Панель управления</h1>        
         <Link to="/panel/decision">Добавить решение</Link>
         <Link to="/panel/liked">Полезные решения</Link>
+        <Link to="/panel/mydecision">Мои решения</Link>
       </div>
       <Footer /> 
     </>

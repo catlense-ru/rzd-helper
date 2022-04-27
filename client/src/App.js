@@ -25,6 +25,7 @@ import Edecision from "./pages/Panel/Edit/Edecision";
 import Stat from "./pages/Panel/stat/Stat";
 import DDecision from "./pages/Panel/Delete/DDecision";
 import Search from "./pages/Search/Search";
+import MyDecisions from "./pages/Panel/myDecisions/MyDecisions";
 
 function App() {
 
@@ -62,6 +63,8 @@ function App() {
         <Route path="/panel/stat" element={<Stat title="Статистика сайта" />} />
 
         <Route path="/search" element={<Search title="Поиск по сайту" />} />
+
+        <Route path="/panel/mydecision" element={<MyDecisions title="Мои решения" />} />
       </Routes>
     </BrowserRouter>
   );

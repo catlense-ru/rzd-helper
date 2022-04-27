@@ -92,4 +92,12 @@ export default class Decisions {
     return {status: 'success', message: 'успешно деактивировано'}
   }
 
+  async getByUser(uid: any) {
+    const decisions = await Decision.find({by: uid})
+    if(!decisions) {
+      return {status: 'error', message: 'Замечания от этого пользователя не найдены'}
+    }
+    return {status: 'success', message: decisions}
+  }
+
 }

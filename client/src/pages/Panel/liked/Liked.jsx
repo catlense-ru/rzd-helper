@@ -35,7 +35,7 @@ export default function Liked(props) {
     <Header />
     <div className={s.likedContainer}>
       <h1>Полезные решения</h1>
-      {actualData.length > 0 ? actualData.map(e => <Decision uid={e.uid} key={e.uid} author={e.by_name}>{e.decision}</Decision>) : <p>Вы не отметили ни одно решение полезным</p>}
+      {actualData.length > 0 ? actualData.map(e => <Decision uid={e.uid} key={e.uid} author={e.by_name} image={e.photo}>{e.decision}</Decision>) : <p>Вы не отметили ни одно решение полезным</p>}
     </div>
     <Footer />
     </>

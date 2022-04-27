@@ -51,4 +51,10 @@ router.get('/delete', async(req: Request, res: Response) => {
   res.status(200).json(await decisions.deleteDecision(uid, user_token))
 })
 
+router.get('/getByUser', async(req: Request, res: Response) => {
+  const {uid} = req.query
+  if(!uid || uid == 'undefined') return res.status(200).json({status: 'error', message: 'Укажите ID'})
+  res.status(200).json(await decisions.getByUser(uid))
+})
+
 export default router
