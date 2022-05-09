@@ -26,7 +26,7 @@ export default function MyDecisions(props) {
 
       {
         userDecisions && userDecisions.map(e => {
-          if(e.hidden === 'hidden') return;
+          if(e.hidden === 'hidden') return(<></>);
           return <Decision type="edit" uid={e.uid} key={e.uid} author={e.by_name} image={e.photo}>{e.decision}</Decision>
         })
       }

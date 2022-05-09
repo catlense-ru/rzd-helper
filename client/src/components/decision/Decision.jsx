@@ -54,7 +54,7 @@ export default function Decision(props) {
         <div className={s.decision} uid={props.uid}>
           <div>
             <p>{props.children} - <i>{props.author}</i></p>
-            {props.image && <img src={`${config.api}/${props.image}`} />}
+            {props.image && <img src={`${config.api}/${props.image}`} alt={props.image} />}
           </div>
           
           {
@@ -71,7 +71,7 @@ export default function Decision(props) {
         <div className={s.decision} uid={props.uid}>
           <div>
             <p>{props.children} - <i>{props.author}</i></p>
-            {props.image && <img src={`${config.api}/${props.image}`} />}
+            {props.image && <img src={`${config.api}/${props.image}`} alt={props.image} />}
           </div>
           
           {

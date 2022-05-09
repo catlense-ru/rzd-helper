@@ -32,14 +32,13 @@ export default function Search(props) {
         }
         {
           results ? results.map(e => {
-            console.log(e.decisions)
             if(e.comment) {
               return <>
-                <p style={{borderTop: '1px solid #eee', paddingTop: 15, marginTop: 15}}><b>{e.comment}</b></p>
-                {e.decisions.map(e => {return <Decision author={e.by} uid={e.uid} image={e.photo}>{e.decision}</Decision>})}
+                <p style={{borderTop: '1px solid #eee', paddingTop: 15, marginTop: 15}} key={e.uid}><b>{e.comment}</b></p>
+                {e.decisions.map(e => {return <Decision author={e.by} uid={e.uid} image={e.photo} key={e.uid}>{e.decision}</Decision>})}
               </>
             } else {
-              return <Decision author={e.by} uid={e.uid}>{e.decision}</Decision>
+              return <Decision author={e.by} uid={e.uid} key={e.uid}>{e.decision}</Decision>
             }
           }) : null
         }

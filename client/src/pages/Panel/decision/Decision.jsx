@@ -41,11 +41,10 @@ export default function Decision(props) {
     }
   }, [system])
 
-  useEffect(async() => {
+  useEffect(() => {
     console.log(selectedFile)
 
-    if(selectedFile) {
-      setLoading(true)
+    async function fetchData() {
       const formData = new FormData()
       formData.append('photo', selectedFile)
       await axios.post(`${config.api}/upload`, formData, {
@@ -58,6 +57,11 @@ export default function Decision(props) {
         setResult('Файл загружен')
         setLoading(false)
       })
+    }
+
+    if(selectedFile) {
+      setLoading(true)
+      fetchData()
     }
   }, [selectedFile])
 
@@ -108,7 +112,7 @@ export default function Decision(props) {
         <p>{result}</p>
         <p>{loading && 'Загрузка...'}</p>
         {
-          pathToImage && <img src={`${config.api}/${pathToImage}`} alt="Image" />
+          pathToImage && <img src={`${config.api}/${pathToImage}`} alt={pathToImage} />
         }
       </div>
       <Footer />
