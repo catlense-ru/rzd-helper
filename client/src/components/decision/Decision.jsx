@@ -12,7 +12,6 @@ export default function Decision(props) {
     axios.get(`${config.api}/control/decisions/getLikes?id=${props.uid}`).then(({data}) => {
       if(data.likes.find(e => e.toString() === user.uid.toString())) {
         setActive(true)
-        // console.log(data.likes.find(e => e.toString() == user.uid), user.uid)
       }
     })
     // eslint-disable-next-line
@@ -32,7 +31,6 @@ export default function Decision(props) {
   const onEdit = () => {
     const msg = window.prompt('Введите новый текст замечания', props.children)
     if(msg) {
-      console.log(msg)
       axios.post(`${config.api}/control/decisions/edit`, {decision_id: props.uid, decision: msg}).then(({data}) => {
         alert(data.message)
       })

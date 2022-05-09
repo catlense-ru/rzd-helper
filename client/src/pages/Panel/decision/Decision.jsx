@@ -33,7 +33,6 @@ export default function Decision(props) {
   }, [])
 
   useEffect(() => {
-    console.log(system)
     if (system !== 0) {
       axios.get(`${config.api}/control/comments/getBySystem?id=${system}`).then(({ data }) => {
         setComments(data)
@@ -42,7 +41,6 @@ export default function Decision(props) {
   }, [system])
 
   useEffect(() => {
-    console.log(selectedFile)
 
     async function fetchData() {
       const formData = new FormData()
@@ -52,7 +50,6 @@ export default function Decision(props) {
           'content-type': 'multipart/form-data'
         }
       }).then(({data}) => {
-        console.log(data)
         setPathToImage(data.response)
         setResult('Файл загружен')
         setLoading(false)

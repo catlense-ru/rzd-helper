@@ -46,10 +46,6 @@ export default function DDecision(props) {
     }
   }, [comment])
 
-  useEffect(() => {
-    console.log(decision)
-  }, [decision])
-
   const deactivate = () => {
     axios.get(`${config.api}/control/decisions/delete?uid=${decision.id}&user_token=${user.token}`).then(({data}) => {
       setResult(data.message)

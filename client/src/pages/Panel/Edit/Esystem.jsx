@@ -35,7 +35,6 @@ export default function Esystem(props) {
 
   useEffect(() => {
     setName(system.name)
-    console.log(system.id)
   }, [system])
 
   const sendData = () => {

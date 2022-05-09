@@ -17,7 +17,6 @@ export default function SystemTable() {
   useEffect(() => {
     axios.get(`${config.api}/control/stat/systems`).then(({data}) => {
       setUsers(data)
-      console.log(data)
     })
   }, [systems])
 

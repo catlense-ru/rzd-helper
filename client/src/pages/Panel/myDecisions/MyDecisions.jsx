@@ -10,13 +10,10 @@ export default function MyDecisions(props) {
 
   const [userDecisions, setUserDecisions] = useState()
   const user = useSelector(state => state.user)
-  console.log(user)
 
   useEffect(() => {
     if(user.uid) axios.get(`${config.api}/control/decisions/getByUser?uid=${user.uid}`).then(({data}) => setUserDecisions(data.message))
   }, [user.uid])
-
-  console.log(userDecisions)
 
   return(
     <>

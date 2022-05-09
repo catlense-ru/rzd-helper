@@ -14,7 +14,6 @@ export default function Search(props) {
   const sendData = () => {
     axios.get(`${config.api}/search/search?s=${search}`).then(({data}) => {
       setResults(data.result)
-      // console.log(data.result)
     })
   }
 
