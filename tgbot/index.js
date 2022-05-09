@@ -4,6 +4,15 @@ import axios from "axios";
 
 const bot = new Telebot(config.token)
 
+bot.on(/^\/say (.+)$/, (msg, props) => {
+  const text = props.match[1];
+  return bot.sendMessage(msg.from.id, text, { replyToMessage: msg.message_id });
+});
+
+bot.on('edit', (msg) => {
+  return msg.reply.text('I saw it! You edited message!', { asReply: true });
+});
+
 bot.start()
 
 function getSystems(msg) {
